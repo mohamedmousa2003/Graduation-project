@@ -24,5 +24,6 @@ samples, guidance on mobile development, and a full API reference.
 - shimmer
 - carousel_slider
 
-## design splash Screen 
-![Image](https://github.com/user-attachments/assets/7051270f-1209-4735-8eec-df39712f5eb5)
+## Image 
+![Image](https://github.com/user-attachments/assets/7051270f-1209-4735-8eec-df39712f5eb5) 
+![Image](https://github.com/user-attachments/assets/19572c32-3fb2-4eff-b592-75a1cdca9a6c)
