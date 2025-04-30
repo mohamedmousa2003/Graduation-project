@@ -1,5 +1,5 @@
 import 'package:final_project_bfcai/core/extensions/context_extention.dart';
-import 'package:final_project_bfcai/features/profile_screen/presentation/pages/profile.dart';
+import 'package:final_project_bfcai/features/profile_screen/presentation/pages/profile_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -49,7 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Gap(15.w),
                   GestureDetector(
                     onTap: () {
-                      context.pushNamed(ProfileImageScreen.routeName);
+                      context.pushNamed(ProfileImageSetting.routeName);
                     },
                     child: DesignImage(
                       width: 110.w,
