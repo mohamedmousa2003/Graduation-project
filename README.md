@@ -25,4 +25,4 @@ samples, guidance on mobile development, and a full API reference.
 - carousel_slider
 
 ## design splash Screen 
-![splash_Screen.png](splash_Screen.png)
+![splash_Screen.png](assets/splash_Screen.png)
