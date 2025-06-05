@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        title: "A M U N",
         navigatorObservers: [
           AppNavigatorObserver.instance.routeObserver,
         ],

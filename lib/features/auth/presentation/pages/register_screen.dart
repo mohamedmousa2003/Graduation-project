@@ -134,7 +134,7 @@ class _RegisterScreenState extends State<RegisterScreen> with TickerProviderStat
                 onPressed: () {
                   //context.pushNamed(VerificationCodeScreen.routeName);
                 },
-                title: register,
+                title: Text(register),
               ),
             ),
             Gap(30.h),

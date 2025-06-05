@@ -1,4 +1,5 @@
 import 'package:final_project_bfcai/core/extensions/context_extention.dart';
+import 'package:final_project_bfcai/features/favourites/presentation/pages/favourites_screen.dart';
 import 'package:final_project_bfcai/features/profile_screen/presentation/pages/profile_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,7 +29,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     String selectedLanguage = "ar";
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.white,
+
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 9.w),
         child: Column(
@@ -46,34 +48,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               child: Row(
                 children: [
-                  Gap(15.w),
+
                   GestureDetector(
                     onTap: () {
                       context.pushNamed(ProfileImageSetting.routeName);
                     },
-                    child: DesignImage(
-                      width: 110.w,
-                      height: 150.h,
+                    child: Padding(
+                      padding:  EdgeInsets.all(10.0.w),
+                      child: DesignImage(
+                        width: 110.w,
+                        height: 150.h,
+                      ),
                     ),
                   ),
-                  Gap(15.w),
                   Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Mohamed Mousa",
-                          style: AppTextStyle.size21.copyWith(
-                            color: AppColor.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        // Text(
-                        //   "mohamedmousa@gmail.com",style: AppTextStyle.size14.copyWith(
-                        //   color: AppColor.white,
-                        //   overflow: TextOverflow.ellipsis,
-                        // ),),
-                      ],
+                    child: Text(
+                      "Mohamed Mousa",
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyle.size21.copyWith(
+                        color: AppColor.white,
+                        fontWeight: FontWeight.bold,
+
+                      ),
                     ),
                   ),
                   Gap(30.h),
@@ -95,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 designCard(
                   title: favourites,
                   onTap: () {
-                    // Navigator.pushNamed(context,ChangePassword.routeName);
+                    Navigator.pushNamed(context,FavouritesScreen.routeName);
                   },
                 ),
                 designCard(
@@ -173,7 +169,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColor.white,
+        color: AppColor.grayCard,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(24.r),
           bottomRight: Radius.circular(24.r),
@@ -275,7 +271,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   Gap(20.h),
                   MaterialButtonWidget(
-                    title: saveAndChange,
+                    title: Text(saveAndChange),
                     onPressed: () {
                       Navigator.pop(context);
                     },

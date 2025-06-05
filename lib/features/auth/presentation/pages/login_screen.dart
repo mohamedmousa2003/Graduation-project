@@ -140,7 +140,8 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
             Gap(40.h),
             SlideTransition(
                 position: _animationManager.sliderAnimationRight,
-                child: MaterialButtonWidget(onPressed: () {}, title: login)),
+                child: MaterialButtonWidget(
+                    onPressed: () {}, title: Text(login))),
             Gap(30.h),
             SlideTransition(
               position: _animationManager.sliderAnimationBottom,

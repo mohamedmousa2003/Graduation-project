@@ -74,7 +74,7 @@ class _SelectAuthState extends State<SelectAuth> with TickerProviderStateMixin, 
                 onPressed: () {
                   context.pushNamed(RegisterScreen.routeName);
                 },
-                title: createAccount,
+                title: Text(createAccount),
               ),
             ),
             Gap(20.h),
@@ -84,7 +84,7 @@ class _SelectAuthState extends State<SelectAuth> with TickerProviderStateMixin, 
                 onPressed: () {
                   context.pushNamed(LoginScreen.routeName);
                 },
-                title: "LOGIN",
+                title: Text("LOGIN"),
                 haveBorder: true,
                 colorBackground: Colors.white,
                 colorText: AppColor.primary,

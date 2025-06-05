@@ -1,0 +1,1 @@
+enum TypClickAuth { login, register }
