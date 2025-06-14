@@ -29,14 +29,18 @@ class _ClassicalPlacesScreenState extends State<ClassicalPlacesScreen> {
       showDialog(
         context: context,
         builder: (_) => AlertDialog(
-          title: const Text(warning),
-          content: const Text("من فضلك اكتب مكان للبحث عنه"),
+          backgroundColor: AppColor.white,
+          title:  Text(warning,style: AppTextStyle.size24.copyWith(fontWeight: FontWeight.bold),),
+          content: Text(writeResult,style: AppTextStyle.size18.copyWith(
+              fontWeight: FontWeight.bold,color: AppColor.gray
+          ),),
           actions: [
             SizedBox(
               width: 50.w,
               height: 40.h,
               child: MaterialButtonWidget(
                 colorBackground: AppColor.lightGray,
+                radius: 20,
                 onPressed: () {
                 context.pop();
               }, title: Text(ok),
@@ -105,7 +109,6 @@ class _ClassicalPlacesScreenState extends State<ClassicalPlacesScreen> {
                     return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
                     return const Center(
-                      //"لا يوجد اتصال بالإنترنت"
                       child: EmptyStateWidget(
                         imagePath: IconsSvg.search,
                         imageWidth: 50,
@@ -123,8 +126,8 @@ class _ClassicalPlacesScreenState extends State<ClassicalPlacesScreen> {
                         imagePath: IconsSvg.search,
                         imageWidth: 50,
                         imageHeight: 50,
-                        title: "لا توجد نتائج",
-                        description: "المكان غير موجود، حاول كتابة اسم آخر.",
+                        title: noResult,
+                        description: noPlace,
                       ),
                     );
                   }
@@ -136,11 +139,11 @@ class _ClassicalPlacesScreenState extends State<ClassicalPlacesScreen> {
                       final place = places[index];
                       return ListTile(
                         title: Text(
-                          place.name ?? "لا يوجد اسم",
+                          place.name ?? "No name",
                           style: AppTextStyle.size18.copyWith(fontWeight: FontWeight.bold),
                         ),
                         subtitle: Text(
-                          place.address ?? "لا يوجد عنوان",
+                          place.address ?? "No address",
                           style: AppTextStyle.size14.copyWith(color: AppColor.gray),
                         ),
                         leading: place.image != null

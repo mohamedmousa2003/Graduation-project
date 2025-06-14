@@ -66,7 +66,7 @@ class AppRoutes {
       case FavouritesScreen.routeName:
         return AnimationRoute(page: const FavouritesScreen());
       case TripModel.routeName:
-        return AnimationRoute(page: const TripModel());
+        return AnimationRoute(page:  TripModel());
       case ProfileImageSetting.routeName:
         return AnimationRoute(page: const ProfileImageSetting());
       case ChatbotScreen.routeName:
@@ -75,8 +75,6 @@ class AppRoutes {
 
       case ClassicalPlacesScreen.routeName:
         return AnimationRoute(page: ClassicalPlacesScreen());
-      case RivieraScreen.routeName:
-        return AnimationRoute(page: const RivieraScreen());
       case PlanTripScreen.routeName:
         return AnimationRoute(page: const PlanTripScreen());
       // case EditProfile.routeName:

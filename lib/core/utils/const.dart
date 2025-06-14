@@ -94,6 +94,9 @@ const String search ="Search";
 const String enterGovernorateName ="Enter Governorate Name";
 const String ok ="OK";
 const String warning ="Warning";
+const String noResult ="There are no results";
+const String writeResult ="Please write a place.";
+const String noPlace ="The place does not exist, try writing another name.";
 //? heandeled error
 const String noInternetConnection ="No internet connection";
 const String checkYourConnection = "Check your connection and try again.";

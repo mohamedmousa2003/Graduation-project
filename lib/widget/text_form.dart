@@ -62,9 +62,9 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
         Gap(widget.verticalPadding.h),
         TextFormField(
           enabled: widget.enabled ?? true,
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9@*\-_]')),
-          ],
+          // inputFormatters: [
+          //   FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9@*\-_]')),
+          // ],
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.w500,

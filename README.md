@@ -28,5 +28,6 @@ samples, guidance on mobile development, and a full API reference.
 - flutter_launcher_icons
 - http
 - skeletonizer
+- provider
 ## Image 
 ![Image](https://github.com/user-attachments/assets/7051270f-1209-4735-8eec-df39712f5eb5)  ![Image](https://github.com/user-attachments/assets/19572c32-3fb2-4eff-b592-75a1cdca9a6c)

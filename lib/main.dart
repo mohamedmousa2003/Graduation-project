@@ -1,5 +1,7 @@
+import 'package:final_project_bfcai/provider/my_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'core/helper/observer.dart';
 import 'core/routes/app_routes.dart';
 import 'core/utils/app_colors.dart';
@@ -7,7 +9,13 @@ import 'features/splash_screen/splash_screen.dart';
 
 void main() {
   runApp(
-    MyApp(),
+
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+      ],
+      child: MyApp(),
+    ),
   );
 }
 

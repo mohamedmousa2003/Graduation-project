@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:final_project_bfcai/core/extensions/context_extention.dart';
+import 'package:final_project_bfcai/features/home/presentation/pages/riviera_screen.dart';
 import 'package:final_project_bfcai/model/api_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -181,14 +182,14 @@ class _HomeScreenState extends State<HomeScreen>
                                     //     ],
                                     //   ),
                                     // ),
-                      
+
                                   ],
                                 ),
                               ),
                             );
                           },
                           separatorBuilder: (context, index) {
-                      
+
                             return Gap(10.w);
                           },
                         ),
@@ -212,7 +213,13 @@ class _HomeScreenState extends State<HomeScreen>
                         final item = touristsList[index];
                         return GestureDetector(
                           onTap: (){
-                            //
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => RivieraScreen(place: item),
+                              ),
+                            );
+                            //context.pushNamed(ClassicalScreen.routeName);
                           },
                           child: Container(
                             width: 200.w,
@@ -223,50 +230,15 @@ class _HomeScreenState extends State<HomeScreen>
                             child: Column(
                               children: [
                                 Image.network(
-                                    width: double.infinity,
-                                    height: MediaQuery.of(context).size.height*0.21,
-                                    fit: BoxFit.cover,
+                                  width: double.infinity,
+                                  height: MediaQuery.of(context).size.height*0.21,
+                                  fit: BoxFit.cover,
                                   errorBuilder: (_, __, ___) => const Icon(Icons.image_not_supported),
-                                    item.imageUrl ?? "",
+                                  item.imageUrl ?? "",
                                 ),
                                 Gap(8.h),
                                 LocationRow(location: item.name ?? ""),
                                 RatingRow(rating: item.rating != null ? double.tryParse(item.rating.toString()) ?? 0.0 : 0.0,),
-                                // Text(
-                                //   item.description ?? "",
-                                //  style: AppTextStyle.size16.copyWith(
-                                //     height: 1.5,
-                                //   ),
-                                //   textAlign: TextAlign.start,
-                                //   softWrap: true,
-                                // ),
-                                // Container(
-                                //   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-                                //   decoration: BoxDecoration(
-                                //     color: Colors.orange,
-                                //     borderRadius: BorderRadius.circular(12.r),
-                                //   ),
-                                //   child: Row(
-                                //     mainAxisSize: MainAxisSize.min,
-                                //     children: [
-                                //       Text(
-                                //         'EGY',
-                                //         style: AppTextStyle.size18.copyWith(
-                                //           color: Colors.white,
-                                //           fontWeight: FontWeight.bold,
-                                //         ),
-                                //       ),
-                                //       SizedBox(width: 8.w),
-                                //       Text(
-                                //         item.cost?.toString() ?? "",
-                                //         style: AppTextStyle.size18.copyWith(
-                                //           color: Colors.white,
-                                //           fontWeight: FontWeight.bold,
-                                //         ),
-                                //       )
-                                //     ],
-                                //   ),
-                                // ),
 
                               ],
                             ),

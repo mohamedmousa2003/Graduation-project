@@ -2,8 +2,12 @@ import 'package:final_project_bfcai/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../core/utils/app_colors.dart';
 import '../../../../model/ClassicalPlace.dart';
+import '../../../../model/place.dart';
+import '../../../../provider/my_provider.dart';
 import '../../../../test.dart';
 import '../../../../widget/custom_location.dart';
 import '../widgets/custom_rating.dart';
@@ -15,8 +19,34 @@ class ClassicalDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var favoritesProvider = Provider.of<FavoritesProvider>(context);
+    final isFavorite = favoritesProvider.isFavorite(place);
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: isFavorite ? Colors.red : Colors.grey,
+            ),
+            onPressed: () {
+              favoritesProvider.toggleFavorite(place);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('${place.name} removed from favorites'),
+                  duration: Duration(seconds: 1),
+                  behavior: SnackBarBehavior.floating,
+                  backgroundColor: AppColor.green,
+                  margin: EdgeInsets.symmetric(horizontal: 40.w, vertical: MediaQuery.of(context).size.height / 2.5),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.r),
+                  ),
+                ),
+              );
+            },
+          ),
+
+        ],
           title: Text(place.name ?? '',style: AppTextStyle.size24,),
       ),
       body: SingleChildScrollView(

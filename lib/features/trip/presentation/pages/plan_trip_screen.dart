@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/const.dart';
 import '../../../../widget/custom_location.dart';
+import '../../../home/presentation/widgets/custom_rating.dart';
 
 class PlanTripScreen extends StatelessWidget {
   static const String routeName= "planTrip";
@@ -79,6 +80,12 @@ class PlanTripScreen extends StatelessWidget {
                   LocationRow(
                     location: "Hurghada",sizeNum: 30,textNum: 22,
                   ),
+                  Text(
+                    "20" ?? '',
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  // RatingRow(rating: item.rating != null ? double.tryParse(item.rating.toString()) ?? 0.0 : 0.0,),
+                  RatingRow(rating: 3.5),
                 ],
               ),
             ),
