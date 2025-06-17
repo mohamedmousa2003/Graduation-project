@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../core/constant/shared_pref.dart';
 import '../../core/providers/animation_provider.dart';
 import '../../core/constant/images_assets.dart';
 import '../../features/onboarding/presentation/pages/onboarding_view.dart';
 import '../../core/utils/app_colors.dart';
+import '../navigation/presentation/pages/navigation.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,7 +24,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     animationManager.initialize(this,Duration(seconds: 3));
 
     Future.delayed(Duration(seconds: 4), () {
-      Navigator.pushReplacementNamed(context, OnboardingView.routeName); // انتقل للصفحة التالية
+      if(SharedPrefsService.getString("token")!=null){
+        Navigator.pushReplacementNamed(context, MainControllerScreens.routeName);
+      }else {
+        Navigator.pushReplacementNamed(context, OnboardingView.routeName);
+      }// انتقل للصفحة التالية
     });
   }
 

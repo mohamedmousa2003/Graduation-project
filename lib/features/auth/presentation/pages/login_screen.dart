@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import '../../../../core/constant/icons_assets.dart';
+import '../../../../core/constant/shared_pref.dart';
 import '../../../../core/enums/typ_click_auth.dart';
 import '../../../../core/helper/observer.dart';
 import '../../../../core/providers/animation_provider.dart';
@@ -16,7 +17,7 @@ import '../../../../model/api_manager.dart';
 import '../../../../widget/custom_dialog.dart';
 import '../../../../widget/text_form.dart';
 import '../../../navigation/presentation/pages/navigation.dart';
-import '../../logic/SignUpResponse.dart';
+import '../../logic/sign_up_response.dart';
 import '../widget/haveornotaccount.dart';
 import 'forgetpassword.dart';
 
@@ -82,11 +83,13 @@ class _LoginScreenState extends State<LoginScreen>
 
   Future<void> _signIn() async {
     SignInModelRequest user = SignInModelRequest(
-      email: _emailController.text="moooo.email@example.com",
-      password: _passwordController.text="Ommmm#12345",
+      email: _emailController.text,
+      password: _passwordController.text,
     );
 
     SignUpResponse response = await signInUser(user);
+    SharedPrefsService.saveString("name", response.user!.name!);
+    SharedPrefsService.saveString("email", response.user!.email!);
     print(response.message);
     if (response.success == true) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -118,6 +121,7 @@ class _LoginScreenState extends State<LoginScreen>
         backgroundColor: AppColor.backgroundColor,
         centerTitle: true,
         elevation: 0,
+        scrolledUnderElevation: 0,
         iconTheme: const IconThemeData(color: AppColor.primary, size: 30),
         titleTextStyle: AppTextStyle.size21.copyWith(
           fontWeight: FontWeight.bold,

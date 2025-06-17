@@ -293,6 +293,7 @@
 //
 //  */
 
+import 'package:final_project_bfcai/model/ClassicalPlace.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -312,32 +313,32 @@ class RivieraScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var favoritesProvider1 = Provider.of<FavoritesProvider2>(context);
-    final isFavorite = favoritesProvider1.isFavorite(place);
+    // var favoritesProvider1 = Provider.of<FavoritesProvider>(context);
+    // final isFavorite = favoritesProvider1.isFavorite(place as ClassicalPlace);
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-            icon: Icon(
-              isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: isFavorite ? Colors.red : Colors.grey,
-            ),
-            onPressed: () {
-              favoritesProvider1.toggleFavorite(place);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('${place.name} removed from favorites'),
-                  duration: Duration(seconds: 1),
-                  behavior: SnackBarBehavior.floating,
-                  backgroundColor: AppColor.green,
-                  margin: EdgeInsets.symmetric(horizontal: 40.w, vertical: MediaQuery.of(context).size.height / 2.5),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.r),
-                  ),
-                ),
-              );
-            },
-          ),
+          // IconButton(
+          //   icon: Icon(
+          //     isFavorite ? Icons.favorite : Icons.favorite_border,
+          //     color: isFavorite ? Colors.red : Colors.grey,
+          //   ),
+          //   onPressed: () {
+          //     favoritesProvider1.toggleFavorite(place as ClassicalPlace);
+          //     ScaffoldMessenger.of(context).showSnackBar(
+          //       SnackBar(
+          //         content: Text('${place.name} removed from favorites'),
+          //         duration: Duration(seconds: 1),
+          //         behavior: SnackBarBehavior.floating,
+          //         backgroundColor: AppColor.green,
+          //         margin: EdgeInsets.symmetric(horizontal: 40.w, vertical: MediaQuery.of(context).size.height / 2.5),
+          //         shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(16.r),
+          //         ),
+          //       ),
+          //     );
+          //   },
+          // ),
 
         ],
         title: Text(place.name ?? '',style: AppTextStyle.size24,),

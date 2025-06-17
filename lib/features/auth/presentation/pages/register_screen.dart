@@ -2,6 +2,7 @@ import 'package:final_project_bfcai/core/extensions/context_extention.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import '../../../../core/constant/shared_pref.dart';
 import '../../../../core/enums/typ_click_auth.dart';
 import '../../../../core/helper/observer.dart';
 import '../../../../core/providers/animation_provider.dart';
@@ -13,7 +14,7 @@ import '../../../../model/api_manager.dart';
 import '../../../../widget/custom_dialog.dart';
 import '../../../../widget/text_form.dart';
 import '../../../navigation/presentation/pages/navigation.dart';
-import '../../logic/SignUpResponse.dart';
+import '../../logic/sign_up_response.dart';
 import '../widget/haveornotaccount.dart';
 import 'login_screen.dart';
 
@@ -101,6 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen>
           backgroundColor: AppColor.primary,
         ),
       );
+      SharedPrefsService.saveString("token", response.token!);
       Navigator.of(context).pushReplacementNamed(MainControllerScreens.routeName);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

@@ -7,12 +7,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import '../../../../core/constant/icons_assets.dart';
 import '../../../../core/constant/images_assets.dart';
+import '../../../../core/constant/shared_pref.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/utils/const.dart';
 import '../../../../widget/custom_dialog.dart';
 import '../../../auth/presentation/pages/forget_pass_create_new_password_screen.dart';
 import '../../../auth/presentation/pages/login_screen.dart';
+import '../../../auth/presentation/pages/select_auth.dart';
 import '../widget/design_image.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -25,157 +27,109 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
+  @override
   @override
   Widget build(BuildContext context) {
-    String selectedLanguage = "ar";
     return Scaffold(
       backgroundColor: AppColor.white,
-
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 9.w),
+        padding: EdgeInsets.all(16.w),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Gap(10.h),
+            Gap(20.h),
+            // Header
             Container(
-              height: 132.h,
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(vertical: 20.h),
               decoration: BoxDecoration(
-                color: AppColor.primary,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(24.r),
-                  bottomRight: Radius.circular(24.r),
+                gradient: LinearGradient(
+                  colors: [AppColor.primary, AppColor.primary.withOpacity(0.7)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
+                borderRadius: BorderRadius.circular(15.r),
               ),
               child: Row(
                 children: [
-
-                  GestureDetector(
-                    onTap: () {
-                      context.pushNamed(ProfileImageSetting.routeName);
-                    },
-                    child: Padding(
-                      padding:  EdgeInsets.all(10.0.w),
-                      child: DesignImage(
-                        width: 110.w,
-                        height: 150.h,
+                  Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: GestureDetector(
+                      onTap: () => context.pushNamed(ProfileImageSetting.routeName),
+                      child: CircleAvatar(
+                        radius: 45.r,
+                        backgroundColor: Colors.white,
+                        child: ClipOval(
+                          child: DesignImage(
+                            width: 80.w,
+                            height: 80.h,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: Text(
-                      "Mohamed Mousa",
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyle.size21.copyWith(
-                        color: AppColor.white,
-                        fontWeight: FontWeight.bold,
-
+                  Gap(12.h),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        SharedPrefsService.getString("name")??"name",
+                        style: AppTextStyle.size20.copyWith(
+                          color: AppColor.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
+                      Text(
+                        SharedPrefsService.getString("email")??"email",
+                        style: AppTextStyle.size16.copyWith(
+                          color: AppColor.white,
+                        ),
+                      ),
+                    ],
                   ),
-                  Gap(30.h),
                 ],
               ),
             ),
             Gap(30.h),
-            _buildSectionTitle(setting),
-            _buildSettingsContainer(
-              children: [
-                designCard(
-                  title: changePassword,
-                  onTap: () {
-                    context.pushNamed(
-                      ForgetPassCreateNewPasswordScreen.routeName,
-                    );
-                  },
+
+            // Settings Title
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                setting,
+                style: AppTextStyle.size21.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: AppColor.primary,
                 ),
-                designCard(
-                  title: favourites,
-                  onTap: () {
-                    Navigator.pushNamed(context,FavouritesScreen.routeName);
-                  },
-                ),
-                designCard(
-                  title: language,
-                  onTap: () {
-                    showLanguageBottomSheet(context, selectedLanguage, (
-                      newLanguage,
-                    ) {
-                      setState(() {
-                        selectedLanguage = newLanguage;
-                      });
-                    });
-                  },
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        selectedLanguage == "ar" ? english : arabic,
-                        style: AppTextStyle.size16.copyWith(
-                          color: AppColor.primary,
-                          decorationThickness: 2,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      const Icon(Icons.arrow_forward_ios_outlined, size: 30),
-                    ],
-                  ),
-                ),
-              ],
+              ),
             ),
-            Gap(30.h),
-            _buildSectionTitle(help),
-            _buildSettingsContainer(
-              children: [
-                designCard(
-                  title: signOut,
-                  onTap: () {
-                    return _showUnfollowDialog(context);
-                  },
-                ),
-                designCard(
-                  title: privacyPolicy,
-                  onTap: () {
-                    // Navigator.pushNamed(context,ChangePassword.routeName);
-                  },
-                ),
-                designCard(
-                  title: version,
-                  onTap: () {
-                    // Navigator.pushNamed(context,ChangePassword.routeName);
-                  },
-                ),
-              ],
+            Gap(16.h),
+
+            // Settings Card
+            Container(
+              decoration: BoxDecoration(
+                color: AppColor.grayCard,
+                borderRadius: BorderRadius.circular(20.r),
+              ),
+              child: Column(
+                children: [
+                  buildProfileItem(
+                    title: favourites,
+                    icon: Icons.favorite_border,
+                    onTap: () => Navigator.pushNamed(context, FavouritesScreen.routeName),
+                  ),
+                  buildProfileItem(
+                    title: signOut,
+                    icon: Icons.logout,
+                    onTap: () => _showUnfollowDialog(context),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildSectionTitle(String title) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 10.h),
-      child: Text(
-        title,
-        style: AppTextStyle.size21.copyWith(
-          fontWeight: FontWeight.bold,
-          color: AppColor.primary,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSettingsContainer({required List<Widget> children}) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: AppColor.grayCard,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24.r),
-          bottomRight: Radius.circular(24.r),
-        ),
-      ),
-      child: Column(children: children),
     );
   }
 
@@ -209,66 +163,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   Gap(16.h),
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          height: 25.h,
-                          width: 25.h,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: AppColor.primary,
-                              width: 1.5,
-                            ),
-                            shape: BoxShape.circle,
-                          ),
-                          child: Center(
-                            child: SvgPicture.asset(
-                              IconsSvg.cancelProfile,
-                              color: AppColor.primary,
-                              height: 15.h,
-                              width: 15.w,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Gap(12.h),
-                      Text(
-                        language,
-                        style: AppTextStyle.size18.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: AppColor.primary,
-                        ),
-                      ),
-                    ],
-                  ),
+
                   Gap(10.h),
-                  _buildLanguageOption(
-                    context,
-                    arabic,
-                    "ar",
-                    selectedLanguage == "ar",
-                    (newLang) {
-                      setState(() {
-                        selectedLanguage = newLang;
-                      });
-                    },
-                  ),
+
                   Gap(10.h),
-                  _buildLanguageOption(
-                    context,
-                    english,
-                    "en",
-                    selectedLanguage == "en",
-                    (newLang) {
-                      setState(() {
-                        selectedLanguage = newLang;
-                      });
-                    },
-                  ),
+
                   Gap(20.h),
                   MaterialButtonWidget(
                     title: Text(saveAndChange),
@@ -287,39 +186,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _buildLanguageOption(
-    BuildContext context,
-    String title,
-    String value,
-    bool isSelected,
-    Function(String) onLanguageSelected,
-  ) {
-    return GestureDetector(
-      onTap: () => onLanguageSelected(value),
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 12.w, horizontal: 16.h),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: isSelected ? AppColor.primary : AppColor.grayWhite,
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(title, style: AppTextStyle.size16),
-            isSelected
-                ? const Icon(
-                  Icons.radio_button_checked,
-                  color: AppColor.primary,
-                )
-                : const Icon(Icons.radio_button_off, color: AppColor.grayWhite),
-          ],
-        ),
+  Widget buildProfileItem({
+    required String title,
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return ListTile(
+      contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
+      leading: Icon(icon, color: AppColor.primary),
+      title: Text(
+        title,
+        style: AppTextStyle.size18.copyWith(fontWeight: FontWeight.w500),
       ),
+      trailing: Icon(Icons.arrow_forward_ios_rounded, size: 20, color: AppColor.gray),
+      onTap: onTap,
     );
   }
+
 
   Widget designCard({
     required VoidCallback onTap,
@@ -340,7 +223,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _showUnfollowDialog(BuildContext context) {
     showDialog(
       context: context,
-
       builder:
           (context) => CustomDialog(
             widthICon: 56,
@@ -350,7 +232,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             confirmText: logout,
             onCancel: () => context.pop(),
             onConfirm: () {
-              context.pushNamedAndRemoveUntil(LoginScreen.routeName);
+              SharedPrefsService.clearAll("token");
+              context.pushNamedAndRemoveUntil(SelectAuth.routeName);
             },
             confirmBackgroundColor: AppColor.primary,
             cancelBackgroundColor: AppColor.grayCard,

@@ -3,12 +3,14 @@ import 'package:final_project_bfcai/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import '../../../../core/constant/shared_pref.dart';
 import '../widget/custom_card.dart';
 import '../widget/design_image.dart';
 
 class ProfileImageSetting extends StatelessWidget {
   static const String routeName = "profileImage";
   const ProfileImageSetting({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +57,7 @@ class ProfileImageSetting extends StatelessWidget {
             ),),
             Gap(3.h),
             CustomCard(
-              name: "Mohamed Mousa",
+              name:SharedPrefsService.getString("name")??"Name",
             ),
             Gap(8.h),
             Text("Email",style: AppTextStyle.size18.copyWith(
@@ -63,7 +65,7 @@ class ProfileImageSetting extends StatelessWidget {
             ),),
             Gap(3.h),
             CustomCard(
-              name: "Mohamedmousa@gmail.com",
+              name: SharedPrefsService.getString("email")??"email",
             ),
           ],
         ),

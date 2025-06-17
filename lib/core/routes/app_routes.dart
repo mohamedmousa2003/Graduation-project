@@ -11,6 +11,7 @@ import '../../features/favourites/presentation/pages/favourites_screen.dart';
 import '../../features/home/presentation/pages/classical_screen.dart';
 import '../../features/home/presentation/pages/home_screen.dart';
 import '../../features/home/presentation/pages/riviera_screen.dart';
+import '../../features/hotels/pages/hotel_Screen.dart';
 import '../../features/navigation/presentation/pages/navigation.dart';
 import '../../features/onboarding/presentation/pages/onboarding_view.dart';
 import '../../features/profile_screen/presentation/pages/profile_screen.dart';
@@ -19,6 +20,7 @@ import '../../features/search/presentation/pages/search_Screen.dart';
 import '../../features/splash_screen/splash_screen.dart';
 import '../../features/trip/presentation/pages/plan_trip_screen.dart';
 import '../../features/trip/presentation/pages/trip_model.dart';
+import '../../model/HotelsModel.dart';
 import '../enums/typ_click_auth.dart';
 import 'animation_routes.dart';
 
@@ -73,10 +75,10 @@ class AppRoutes {
         return AnimationRoute(page: const ChatbotScreen());
 
 
+
       case ClassicalPlacesScreen.routeName:
         return AnimationRoute(page: ClassicalPlacesScreen());
-      case PlanTripScreen.routeName:
-        return AnimationRoute(page: const PlanTripScreen());
+
       // case EditProfile.routeName:
       //   return AnimationRoute(page: const EditProfile());
       // case EditNumPhoneProfile.routeName:

@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import '../features/auth/logic/SignUpResponse.dart';
+import '../features/auth/logic/sign_up_response.dart';
 import '../features/trip/logic/TripPlan.dart';
 import 'ClassicalPlace.dart';
+import 'HotelsModel.dart';
 import 'RequestSignUpModel.dart';
 import 'SearchPlace.dart';
 import 'TouristPlace.dart';
@@ -79,6 +80,24 @@ class ApiManager {
   }
 
 
+
+  // hotels
+
+
+  static Future<List<HotelModel>> getHotels() async {
+    final url = Uri.parse('http://hotelstourism.runasp.net/api/Hotels/');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((json) => HotelModel.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load hotels');
+    }
+  }
+
+
+
 }
 
 
@@ -90,7 +109,8 @@ Future<TripPlan> getTripPlan(RequestPlanTrip parposer) async {
   );
   if (response.statusCode == 200) {
     print(response.body);
-    return TripPlan.fromJson(jsonDecode(response.body));
+    return TripPlan.fromJson(jsonDecode(response.body
+    ));
   } else {
     throw Exception('Failed to get trip plan');
   }
@@ -122,7 +142,7 @@ Future<SignUpResponse> signInUser(SignInModelRequest signInUser) async {
 }
 
 
-
+// hotels
 
 
 

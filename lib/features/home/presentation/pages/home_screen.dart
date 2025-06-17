@@ -7,15 +7,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/constant/images_assets.dart';
+import '../../../../core/constant/shared_pref.dart';
 import '../../../../core/helper/observer.dart';
 import '../../../../core/providers/animation_provider.dart';
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_text_style.dart';
 import '../../../../model/ClassicalPlace.dart';
+import '../../../../model/HotelsModel.dart';
 import '../../../../model/TouristPlace.dart';
 import '../../../../widget/logo.dart';
 import '../../../chatbot/presentation/pages/chatbot_screen.dart';
 import '../../../../widget/custom_location.dart';
-import '../../../search/presentation/pages/search_Screen.dart';
+import '../../../hotels/pages/hotel_Screen.dart';
+import '../../../profile_screen/presentation/widget/design_image.dart';
+import '../widgets/check_login.dart';
 import '../widgets/custom_rating.dart';
 import '../widgets/image_url_controller_widget.dart';
 import 'classical_screen.dart';
@@ -71,24 +76,41 @@ class _HomeScreenState extends State<HomeScreen>
                 position: _animationManager.sliderAnimationLeft,
                 child: Row(
                   children: [
-                    GestureDetector(
-                      onTap:(){
-            context.pushNamed(ClassicalPlacesScreen.routeName);
-          },
-                      child: Container(
-                        height: 55,
-                        width: MediaQuery.of(context).size.width * 0.75,
-                        decoration: BoxDecoration(
-                          color: AppColor.white,
-                          borderRadius: BorderRadius.circular(20.r),
-                          border: Border.all(
-                            color: AppColor.lightGray,
-                            width: 2,
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 40.r,
+                          backgroundColor: Colors.white,
+                          child: ClipOval(
+                            child: DesignImage(
+                              width: 80.w,
+                              height: 80.h,
+                            ),
                           ),
                         ),
-                      ),
+                        Gap(12.h),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              SharedPrefsService.getString("name")??"name",
+                              style: AppTextStyle.size21.copyWith(
+                                color: AppColor.grayWhite,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              SharedPrefsService.getString("email")??"email",
+                              style: AppTextStyle.size16.copyWith(
+                                color: AppColor.grayWhite,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                     Gap(5.w),
+                    Spacer(),
                     GestureDetector(
                       onTap: (){
                         context.pushNamed(ChatbotScreen.routeName);
@@ -109,102 +131,36 @@ class _HomeScreenState extends State<HomeScreen>
                 future: ApiManager.getTourist(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return  Skeletonizer(
+                    return Skeletonizer(
                       child: SizedBox(
                         height: 210.h,
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           itemCount: 4,
                           itemBuilder: (context, index) {
-                            final item =TouristPlace(
-                              address: "address" ,
-                              imageUrl: "https://media-cdn.tripadvisor.com/media/photo-o/03/39/9e/3f/citadel-al-qalaa.jpg" ,
+                            final item = TouristPlace(
+                              address: "address",
+                              imageUrl: "https://media-cdn.tripadvisor.com/media/photo-o/03/39/9e/3f/citadel-al-qalaa.jpg",
                               cost: 4,
                               description: "data",
                               name: "data name",
                               rating: 4.5,
-                              type: "type"
+                              type: "type",
                             );
-                            return GestureDetector(
-                              onTap: (){
-                                //
-                              },
-                              child: Container(
-                                width: 200.w,
-                                decoration: BoxDecoration(
-                                  color: AppColor.white,
-                                  borderRadius: BorderRadius.circular(15.r),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Image.network(
-                                      width: double.infinity,
-                                      height: MediaQuery.of(context).size.height*0.21,
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (_, __, ___) => const Icon(Icons.image_not_supported),
-                                      item.imageUrl ?? "",
-                                    ),
-                                    Gap(8.h),
-                                    LocationRow(location: item.name ?? ""),
-                                    RatingRow(rating: item.rating != null ? double.tryParse(item.rating.toString()) ?? 0.0 : 0.0,),
-                                    // Text(
-                                    //   item.description ?? "",
-                                    //  style: AppTextStyle.size16.copyWith(
-                                    //     height: 1.5,
-                                    //   ),
-                                    //   textAlign: TextAlign.start,
-                                    //   softWrap: true,
-                                    // ),
-                                    // Container(
-                                    //   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-                                    //   decoration: BoxDecoration(
-                                    //     color: Colors.orange,
-                                    //     borderRadius: BorderRadius.circular(12.r),
-                                    //   ),
-                                    //   child: Row(
-                                    //     mainAxisSize: MainAxisSize.min,
-                                    //     children: [
-                                    //       Text(
-                                    //         'EGY',
-                                    //         style: AppTextStyle.size18.copyWith(
-                                    //           color: Colors.white,
-                                    //           fontWeight: FontWeight.bold,
-                                    //         ),
-                                    //       ),
-                                    //       SizedBox(width: 8.w),
-                                    //       Text(
-                                    //         item.cost?.toString() ?? "",
-                                    //         style: AppTextStyle.size18.copyWith(
-                                    //           color: Colors.white,
-                                    //           fontWeight: FontWeight.bold,
-                                    //         ),
-                                    //       )
-                                    //     ],
-                                    //   ),
-                                    // ),
-
-                                  ],
-                                ),
-                              ),
-                            );
+                            return _buildPlaceItem(context, item);
                           },
-                          separatorBuilder: (context, index) {
-
-                            return Gap(10.w);
-                          },
+                          separatorBuilder: (context, index) => Gap(10.w),
                         ),
                       ),
                     );
                   } else if (snapshot.hasError) {
-                    return Center(
-                        child: Text('An error occurred: ${snapshot.error}')
-                    );
+                    return Center(child: Text('An error occurred: ${snapshot.error}'));
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                     return Center(child: Text('No data'));
                   }
 
                   final touristsList = snapshot.data!;
-                  return  SizedBox(
+                  return SizedBox(
                     height: 210.h,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
@@ -219,7 +175,6 @@ class _HomeScreenState extends State<HomeScreen>
                                 builder: (_) => RivieraScreen(place: item),
                               ),
                             );
-                            //context.pushNamed(ClassicalScreen.routeName);
                           },
                           child: Container(
                             width: 200.w,
@@ -245,14 +200,12 @@ class _HomeScreenState extends State<HomeScreen>
                           ),
                         );
                       },
-                      separatorBuilder: (context, index) {
-
-                        return Gap(10.w);
-                      },
+                      separatorBuilder: (context, index) => Gap(10.w),
                     ),
                   );
                 },
               ),
+
 
 
               Gap(15.h),
@@ -283,9 +236,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 type: "type"
                             );
                             return GestureDetector(
-                              onTap: (){
-                                //
-                              },
+                              onTap: (){},
                               child: Container(
                                 width: 200.w,
                                 decoration: BoxDecoration(
@@ -304,41 +255,6 @@ class _HomeScreenState extends State<HomeScreen>
                                     Gap(8.h),
                                     LocationRow(location: item.name ?? ""),
                                     RatingRow(rating: item.rating != null ? double.tryParse(item.rating.toString()) ?? 0.0 : 0.0,),
-                                    // Text(
-                                    //   item.description ?? "",
-                                    //  style: AppTextStyle.size16.copyWith(
-                                    //     height: 1.5,
-                                    //   ),
-                                    //   textAlign: TextAlign.start,
-                                    //   softWrap: true,
-                                    // ),
-                                    // Container(
-                                    //   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-                                    //   decoration: BoxDecoration(
-                                    //     color: Colors.orange,
-                                    //     borderRadius: BorderRadius.circular(12.r),
-                                    //   ),
-                                    //   child: Row(
-                                    //     mainAxisSize: MainAxisSize.min,
-                                    //     children: [
-                                    //       Text(
-                                    //         'EGY',
-                                    //         style: AppTextStyle.size18.copyWith(
-                                    //           color: Colors.white,
-                                    //           fontWeight: FontWeight.bold,
-                                    //         ),
-                                    //       ),
-                                    //       SizedBox(width: 8.w),
-                                    //       Text(
-                                    //         item.cost?.toString() ?? "",
-                                    //         style: AppTextStyle.size18.copyWith(
-                                    //           color: Colors.white,
-                                    //           fontWeight: FontWeight.bold,
-                                    //         ),
-                                    //       )
-                                    //     ],
-                                    //   ),
-                                    // ),
 
                                   ],
                                 ),
@@ -412,11 +328,65 @@ class _HomeScreenState extends State<HomeScreen>
               ),
               Gap(10.h),
 
-            ],
-          ),
-        ),
+
+            Text("Hotels",style: AppTextStyle.size21.copyWith(fontWeight: FontWeight.bold),),
+          FutureBuilder<List<HotelModel>>(
+            future: ApiManager.getHotels(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return const Center(child: Text('No hotels found'));
+              }
+
+              final hotels = snapshot.data!;
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: SizedBox(
+                  height: 60,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    itemCount: hotels.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 10),
+                    itemBuilder: (context, index) {
+                      final hotel = hotels[index];
+                      return  GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => HotelCard(hotel: hotel),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                          decoration: BoxDecoration(
+                            color: Colors.teal,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Center(
+                            child: Text(
+                              hotel.name,
+                              style:AppTextStyle.size18.copyWith(
+                                  fontWeight: FontWeight.bold,
+                              color: AppColor.white),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+    ),
+  ]
       ),
-    );
+    )));
   }
 
   Widget _carouselSliderBuilder() {
@@ -454,3 +424,72 @@ class _HomeScreenState extends State<HomeScreen>
     );
   }
 }
+
+
+
+class PlaceholderCard extends StatelessWidget {
+  const PlaceholderCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 200.w,
+      decoration: BoxDecoration(
+        color: Colors.grey.shade300,
+        borderRadius: BorderRadius.circular(15.r),
+      ),
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height * 0.21,
+            color: Colors.grey.shade400,
+          ),
+          Gap(8.h),
+          Container(height: 14.h, width: 120.w, color: Colors.grey.shade400),
+          Gap(6.h),
+          Container(height: 14.h, width: 80.w, color: Colors.grey.shade400),
+        ],
+      ),
+    );
+  }
+}
+
+
+Widget _buildPlaceItem(BuildContext context, TouristPlace item) {
+  return GestureDetector(
+    onTap: () {
+      handleAuthNavigation(
+        context: context,
+        destinationBuilder: (_) => RivieraScreen(place: item),
+      );
+
+    },
+    child: Container(
+      width: 200.w,
+      decoration: BoxDecoration(
+        color: AppColor.white,
+        borderRadius: BorderRadius.circular(15.r),
+      ),
+      child: Column(
+        children: [
+          Image.network(
+            item.imageUrl ?? "",
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height * 0.21,
+            fit: BoxFit.cover,
+            errorBuilder: (_, __, ___) => const Icon(Icons.image_not_supported),
+          ),
+          Gap(8.h),
+          LocationRow(location: item.name ?? ""),
+          RatingRow(
+            rating: item.rating != null
+                ? double.tryParse(item.rating.toString()) ?? 0.0
+                : 0.0,
+          ),
+        ],
+      ),
+    ),
+  );
+}
+

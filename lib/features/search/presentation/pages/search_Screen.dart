@@ -11,6 +11,8 @@ import '../../../../model/SearchPlace.dart';
 import '../../../../model/api_manager.dart';
 import '../../../../widget/custom_dialog.dart';
 import '../../../../widget/empty.dart';
+import '../../../home/presentation/pages/classical_screen.dart';
+import 'click_search.dart';
 
 class ClassicalPlacesScreen extends StatefulWidget {
   static const String routeName = "search";
@@ -137,25 +139,35 @@ class _ClassicalPlacesScreenState extends State<ClassicalPlacesScreen> {
                     itemCount: places.length,
                     itemBuilder: (context, index) {
                       final place = places[index];
-                      return ListTile(
-                        title: Text(
-                          place.name ?? "No name",
-                          style: AppTextStyle.size18.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Text(
-                          place.address ?? "No address",
-                          style: AppTextStyle.size14.copyWith(color: AppColor.gray),
-                        ),
-                        leading: place.image != null
-                            ? SizedBox(
-                          width: mediaQuery.width * 0.2,
-                          height: double.infinity,
-                          child: Image.network(
-                            place.image!,
-                            fit: BoxFit.cover,
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ClickSearch(place: place),
+                            ),
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            place.name ?? "No name",
+                            style: AppTextStyle.size18.copyWith(fontWeight: FontWeight.bold),
                           ),
-                        )
-                            : null,
+                          subtitle: Text(
+                            place.address ?? "No address",
+                            style: AppTextStyle.size14.copyWith(color: AppColor.gray),
+                          ),
+                          leading: place.image != null
+                              ? SizedBox(
+                            width: mediaQuery.width * 0.2,
+                            height: double.infinity,
+                            child: Image.network(
+                              place.image!,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                              : null,
+                        ),
                       );
                     },
                   );
