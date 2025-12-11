@@ -46,7 +46,7 @@ samples, guidance on mobile development, and a full API reference.
 
 |                     Home                     |                       Profile                       |                  ChatBot                  |                 Details                 |
 |:--------------------------------------------:|:---------------------------------------------------:|:-----------------------------------------:|:---------------------------------------:|
-| ![Home](assets/screenshot/home.png) | ![Profile](assets/screenshot/profile Screen .png) | ![ChatBot](assets/screenshot/chatBot.png) | ![Details](assets/screenshot/details.png) |
+| ![Home](assets/screenshot/home.png) | ![Profile](assets/screenshot/profile_screen.png) | ![ChatBot](assets/screenshot/chatBot.png) | ![Details](assets/screenshot/details.png) |
 
 |                 Hotel                  |                  Trip Plan                  |
 |:--------------------------------------:|:-------------------------------------------:|
