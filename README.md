@@ -31,5 +31,21 @@ samples, guidance on mobile development, and a full API reference.
 - provider
 -  shared_preferences
 -  url_launcher
-## Image 
-![Image](https://github.com/user-attachments/assets/7051270f-1209-4735-8eec-df39712f5eb5)  ![Image](https://github.com/user-attachments/assets/19572c32-3fb2-4eff-b592-75a1cdca9a6c)
+
+## 📱 Screenshots
+
+|                Splash                 |                    Register                    |                        Login                        |                        Login                        |
+|:-------------------------------------:|:----------------------------------------------:|:---------------------------------------------------:|:---------------------------------------------------:|
+| ![Splash](assets/screenshot/splash_Screen.png) | ![Register](assets/screenshot/select.png) | ![Login](assets/image/screenshot/login.png) | ![Profile](assets/image/screenshot/profile.png) |
+
+|                Splash                 |                    Register                    |                        Login                        |                        Login                        |
+|:-------------------------------------:|:----------------------------------------------:|:---------------------------------------------------:|:---------------------------------------------------:|
+| ![Splash](assets/screenshot/splash_Screen.png) | ![Register](assets/screenshot/select.png) | ![Login](assets/image/screenshot/login.png) | ![Profile](assets/image/screenshot/profile.png) |
+
+|                     Home                     |                       Profile                       |                  ChatBot                  |                 Details                 |
+|:--------------------------------------------:|:---------------------------------------------------:|:-----------------------------------------:|:---------------------------------------:|
+| ![Home](assets/screenshot/home.png) | ![Profile](assets/screenshot/profile Screen .png) | ![ChatBot](assets/screenshot/chatBot.png) | ![Details](assets/screenshot/details.png) |
+
+|                 Hotel                  |                  Trip Plan                  |
+|:--------------------------------------:|:-------------------------------------------:|
+| ![Hotel](assets/screenshot/hotal.png) | ![Trip Plan](assets/screenshot/trip_plan.png) |

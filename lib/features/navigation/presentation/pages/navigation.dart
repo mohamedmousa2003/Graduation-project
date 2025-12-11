@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/constant/icons_assets.dart';
 import '../../../../core/utils/app_colors.dart';
-import '../../../../test.dart';
 import '../../../favourites/presentation/pages/favourites_screen.dart';
 import '../../../home/presentation/pages/home_screen.dart';
 import '../../../profile_screen/presentation/pages/profile_screen.dart';

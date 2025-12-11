@@ -1,4 +1,6 @@
 import 'package:flutter/foundation.dart';
+import '../features/home/classical_place/data/models/classical_place.dart';
+import '../features/home/tourist_place/data/models/tourist_place.dart';
 import '../model/ClassicalPlace.dart';
 import '../model/TouristPlace.dart';
 

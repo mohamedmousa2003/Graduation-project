@@ -12,6 +12,7 @@ import '../../../../model/api_manager.dart';
 import '../../../../widget/custom_dialog.dart';
 import '../../../../widget/empty.dart';
 import '../../../home/presentation/pages/classical_screen.dart';
+import '../../search/data/models/SearchPlace.dart';
 import 'click_search.dart';
 
 class ClassicalPlacesScreen extends StatefulWidget {

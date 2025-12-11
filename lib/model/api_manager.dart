@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../features/auth/logic/sign_up_response.dart';
+import '../features/home/classical_place/data/models/classical_place.dart';
+import '../features/home/tourist_place/data/models/tourist_place.dart';
+import '../features/hotels/hotel/data/models/hotel_model.dart';
+import '../features/search/search/data/models/SearchPlace.dart';
 import '../features/trip/logic/TripPlan.dart';
 import 'ClassicalPlace.dart';
 import 'HotelsModel.dart';
@@ -55,8 +59,6 @@ class ApiManager {
     }
   }
 
-
-
   static Future<SearchPlace> searchPlace(String province) async {
     Uri url = Uri.http(
       ApiConstants.baseUrlSearch,
@@ -79,11 +81,6 @@ class ApiManager {
     }
   }
 
-
-
-  // hotels
-
-
   static Future<List<HotelModel>> getHotels() async {
     final url = Uri.parse('http://hotelstourism.runasp.net/api/Hotels/');
     final response = await http.get(url);
@@ -96,10 +93,7 @@ class ApiManager {
     }
   }
 
-
-
 }
-
 
 Future<TripPlan> getTripPlan(RequestPlanTrip parposer) async {
   final response = await http.post(
@@ -128,6 +122,7 @@ Future<SignUpResponse> signUpUser(RequestSignUpModel requestModle) async {
     throw Exception(e.toString());
   }
 }
+
 Future<SignUpResponse> signInUser(SignInModelRequest signInUser) async {
   try {
     final response = await http.post(
@@ -140,39 +135,3 @@ Future<SignUpResponse> signInUser(SignInModelRequest signInUser) async {
     throw Exception(e.toString());
   }
 }
-
-
-// hotels
-
-
-
-// class ApiManager {
-//
-//   // http://classical.runasp.net/api/Landmarks/tourist
-//
-//   // function to get data
-//   static Future<TouristPlace> getClassical() async{
-//     Uri url =Uri.http(
-//       ApiConstants.baseUrlClassical,
-//       ApiConstants.endPoint,
-//     );
-//     try{
-//       var response = await http.get(url);
-//       var responseBody =response.body; // now datatype String i am not using String
-//       // response came (json )
-//
-//       //convert String to json
-//       var json=jsonDecode(responseBody);
-//       // //convert json to object
-//       return TouristPlace.fromJson(json); // object from tourists
-//       // Tourists.fromJson(jsonDecode(response.body));
-//     }
-//     catch(error){
-//       //throw error
-//       throw "Error" ;
-//     }
-//
-//
-//   }
-//
-// }

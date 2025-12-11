@@ -8,6 +8,7 @@ import '../../../../widget/empty.dart';
 import '../../../../core/constant/images_assets.dart';
 import '../../../../core/utils/const.dart';
 import '../../../../model/ClassicalPlace.dart';
+import '../../../home/classical_place/data/models/classical_place.dart';
 import '../../../home/presentation/pages/classical_screen.dart';
 
 class FavouritesScreen extends StatelessWidget {

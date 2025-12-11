@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import '../../../../test.dart';
 import '../../../../widget/custom_location.dart';
+import '../../search/data/models/SearchPlace.dart';
 
 class ClickSearch extends StatelessWidget {
   final TouristSpots place;

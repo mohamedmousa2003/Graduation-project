@@ -5,15 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import '../../../../core/constant/icons_assets.dart';
 import '../../../../core/constant/images_assets.dart';
 import '../../../../core/constant/shared_pref.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/utils/const.dart';
 import '../../../../widget/custom_dialog.dart';
-import '../../../auth/presentation/pages/forget_pass_create_new_password_screen.dart';
-import '../../../auth/presentation/pages/login_screen.dart';
 import '../../../auth/presentation/pages/select_auth.dart';
 import '../widget/design_image.dart';
 

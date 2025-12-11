@@ -9,7 +9,7 @@ import '../../../../core/helper/observer.dart';
 import '../../../../core/providers/animation_provider.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
-import '../../../../core/utils/const.dart';// تأكد ان عندك فايل AppNavigatorObserver
+import '../../../../core/utils/const.dart';
 import '../../../../widget/custom_dialog.dart';
 import '../../../navigation/presentation/pages/navigation.dart';
 import 'login_screen.dart';
@@ -36,13 +36,11 @@ class _SelectAuthState extends State<SelectAuth> with TickerProviderStateMixin, 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // نربط الشاشة دي مع RouteObserver
     AppNavigatorObserver.instance.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
   void dispose() {
-    // نلغي الاشتراك
     AppNavigatorObserver.instance.unsubscribe(this);
     _animationManager.dispose();
     super.dispose();
@@ -50,7 +48,6 @@ class _SelectAuthState extends State<SelectAuth> with TickerProviderStateMixin, 
 
   @override
   void didPopNext() {
-    // يتم استدعاؤه لما ترجع للشاشة دي
     _animationManager.restartAnimation();
   }
 
@@ -58,56 +55,58 @@ class _SelectAuthState extends State<SelectAuth> with TickerProviderStateMixin, 
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            SlideTransition(
-              position: _animationManager.sliderAnimationTop,
-              child: SvgPicture.asset(IconsSvg.getStare),
-            ),
-            Gap(50.h),
-            SlideTransition(
-              position: _animationManager.sliderAnimationLeft,
-              child: MaterialButtonWidget(
-                onPressed: () {
-                  context.pushNamed(RegisterScreen.routeName);
-                },
-                title: Text(createAccount),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SlideTransition(
+                position: _animationManager.sliderAnimationTop,
+                child: SvgPicture.asset(IconsSvg.getStare),
               ),
-            ),
-            Gap(20.h),
-            SlideTransition(
-              position: _animationManager.sliderAnimationRight,
-              child: MaterialButtonWidget(
-                onPressed: () {
-                  context.pushNamed(LoginScreen.routeName);
-                },
-                title: Text("LOGIN"),
-                haveBorder: true,
-                colorBackground: Colors.white,
-                colorText: AppColor.primary,
+              Gap(50.h),
+              SlideTransition(
+                position: _animationManager.sliderAnimationLeft,
+                child: MaterialButtonWidget(
+                  onPressed: () {
+                    context.pushNamed(RegisterScreen.routeName);
+                  },
+                  title: Text(createAccount),
+                ),
               ),
-            ),
-            Gap(30.h),
-            SlideTransition(
-              position: _animationManager.sliderAnimationBottom,
-              child: GestureDetector(
-                onTap: () {
-                  context.pushNamedAndRemoveUntil(MainControllerScreens.routeName);
-                },
-                child: Text(
-                  guest,
-                  style: AppTextStyle.size18.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColor.primary,
+              Gap(20.h),
+              SlideTransition(
+                position: _animationManager.sliderAnimationRight,
+                child: MaterialButtonWidget(
+                  onPressed: () {
+                    context.pushNamed(LoginScreen.routeName);
+                  },
+                  title: Text("LOGIN"),
+                  haveBorder: true,
+                  colorBackground: Colors.white,
+                  colorText: AppColor.primary,
+                ),
+              ),
+              Gap(30.h),
+              SlideTransition(
+                position: _animationManager.sliderAnimationBottom,
+                child: GestureDetector(
+                  onTap: () {
+                    context.pushNamedAndRemoveUntil(MainControllerScreens.routeName);
+                  },
+                  child: Text(
+                    guest,
+                    style: AppTextStyle.size18.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: AppColor.primary,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Gap(50.h),
-          ],
+              Gap(50.h),
+            ],
+          ),
         ),
       ),
     );

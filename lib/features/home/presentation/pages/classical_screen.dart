@@ -6,10 +6,10 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../model/ClassicalPlace.dart';
-import '../../../../model/place.dart';
 import '../../../../provider/my_provider.dart';
 import '../../../../test.dart';
 import '../../../../widget/custom_location.dart';
+import '../../classical_place/data/models/classical_place.dart';
 import '../widgets/custom_rating.dart';
 
 class ClassicalDetailScreen extends StatelessWidget {

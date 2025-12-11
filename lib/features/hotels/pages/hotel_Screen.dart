@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_text_style.dart';
 import '../../../model/HotelsModel.dart';
+import '../hotel/data/models/hotel_model.dart';
 
 
 class HotelCard extends StatelessWidget {

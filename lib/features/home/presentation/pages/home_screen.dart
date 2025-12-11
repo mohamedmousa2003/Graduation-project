@@ -18,8 +18,11 @@ import '../../../../model/TouristPlace.dart';
 import '../../../../widget/logo.dart';
 import '../../../chatbot/presentation/pages/chatbot_screen.dart';
 import '../../../../widget/custom_location.dart';
+import '../../../hotels/hotel/data/models/hotel_model.dart';
 import '../../../hotels/pages/hotel_Screen.dart';
 import '../../../profile_screen/presentation/widget/design_image.dart';
+import '../../classical_place/data/models/classical_place.dart';
+import '../../tourist_place/data/models/tourist_place.dart';
 import '../widgets/check_login.dart';
 import '../widgets/custom_rating.dart';
 import '../widgets/image_url_controller_widget.dart';
@@ -206,8 +209,6 @@ class _HomeScreenState extends State<HomeScreen>
                 },
               ),
 
-
-
               Gap(15.h),
 
               // Text(
@@ -330,7 +331,7 @@ class _HomeScreenState extends State<HomeScreen>
 
 
             Text("Hotels",style: AppTextStyle.size21.copyWith(fontWeight: FontWeight.bold),),
-          FutureBuilder<List<HotelModel>>(
+              FutureBuilder<List<HotelModel>>(
             future: ApiManager.getHotels(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {

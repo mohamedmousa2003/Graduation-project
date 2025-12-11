@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/constant/shared_pref.dart';
 import '../../core/providers/animation_provider.dart';
 import '../../core/constant/images_assets.dart';
@@ -56,8 +57,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   child: Image.asset(
                     ImagePng.logo,
                     fit: BoxFit.fill,
-                    height: 100,
-                    width: 100,
+                    height: 100.h,
+                    width: 100.w,
                   ),
                 );
               },
@@ -72,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   child: Text(
                     "A M U N",
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 24.sp,
                       color: Color(0xff2E2D2A),
                       fontWeight: FontWeight.bold,
                     ),

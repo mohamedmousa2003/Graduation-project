@@ -306,6 +306,7 @@ import '../../../../model/TouristPlace.dart';
 import '../../../../provider/my_provider.dart';
 import '../../../../test.dart';
 import '../../../../widget/custom_location.dart';
+import '../../tourist_place/data/models/tourist_place.dart';
 import '../widgets/custom_rating.dart';
 class RivieraScreen extends StatelessWidget {
   final TouristPlace place;
