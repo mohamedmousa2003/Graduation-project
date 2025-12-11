@@ -15,24 +15,24 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-✅ Packages (with pub.dev links)
-📦 Dependencies
-gap — https://pub.dev/packages/gap
-pinput — https://pub.dev/packages/pinput
-flutter_screenutil — https://pub.dev/packages/flutter_screenutil
-flutter_svg — https://pub.dev/packages/flutter_svg
-smooth_page_indicator — https://pub.dev/packages/smooth_page_indicator
-cached_network_image — https://pub.dev/packages/cached_network_image
-shimmer — https://pub.dev/packages/shimmer
-carousel_slider — https://pub.dev/packages/carousel_slider
-image_picker — https://pub.dev/packages/image_picker
-flutter_gemini — https://pub.dev/packages/flutter_gemini
-flutter_launcher_icons — https://pub.dev/packages/flutter_launcher_icons
-http — https://pub.dev/packages/http
-skeletonizer — https://pub.dev/packages/skeletonizer
-provider — https://pub.dev/packages/provider
-shared_preferences — https://pub.dev/packages/shared_preferences
-url_launcher — https://pub.dev/packages/url_launcher
+## ✅ Packages (with pub.dev links) 📦 Dependencies
+
+- **gap** — [https://pub.dev/packages/gap](https://pub.dev/packages/gap)
+- **pinput** — [https://pub.dev/packages/pinput](https://pub.dev/packages/pinput)
+- **flutter_screenutil** — [https://pub.dev/packages/flutter_screenutil](https://pub.dev/packages/flutter_screenutil)
+- **flutter_svg** — [https://pub.dev/packages/flutter_svg](https://pub.dev/packages/flutter_svg)
+- **smooth_page_indicator** — [https://pub.dev/packages/smooth_page_indicator](https://pub.dev/packages/smooth_page_indicator)
+- **cached_network_image** — [https://pub.dev/packages/cached_network_image](https://pub.dev/packages/cached_network_image)
+- **shimmer** — [https://pub.dev/packages/shimmer](https://pub.dev/packages/shimmer)
+- **carousel_slider** — [https://pub.dev/packages/carousel_slider](https://pub.dev/packages/carousel_slider)
+- **image_picker** — [https://pub.dev/packages/image_picker](https://pub.dev/packages/image_picker)
+- **flutter_gemini** — [https://pub.dev/packages/flutter_gemini](https://pub.dev/packages/flutter_gemini)
+- **flutter_launcher_icons** — [https://pub.dev/packages/flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons)
+- **http** — [https://pub.dev/packages/http](https://pub.dev/packages/http)
+- **skeletonizer** — [https://pub.dev/packages/skeletonizer](https://pub.dev/packages/skeletonizer)
+- **provider** — [https://pub.dev/packages/provider](https://pub.dev/packages/provider)
+- **shared_preferences** — [https://pub.dev/packages/shared_preferences](https://pub.dev/packages/shared_preferences)
+- **url_launcher** — [https://pub.dev/packages/url_launcher](https://pub.dev/packages/url_launcher)
 
 ## 📱 Screenshots
 
