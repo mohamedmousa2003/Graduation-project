@@ -34,9 +34,9 @@ samples, guidance on mobile development, and a full API reference.
 
 ## 📱 Screenshots
 
-|                Splash                 |                    Register                    |                        Login                        |                        Login                        |
-|:-------------------------------------:|:----------------------------------------------:|:---------------------------------------------------:|:---------------------------------------------------:|
-| ![Splash](assets/screenshot/splash_Screen.png) | ![Register](assets/screenshot/select.png) | ![Login](assets/image/screenshot/login.png) | ![Profile](assets/image/screenshot/profile.png) |
+|                Splash                 |           Select Authentication           |                        Login                        |                        Login                        |
+|:-------------------------------------:|:-----------------------------------------:|:---------------------------------------------------:|:---------------------------------------------------:|
+| ![Splash](assets/screenshot/splash_Screen.png) | ![Select Authentication](assets/screenshot/select.png) | ![Login](assets/image/screenshot/login.png) | ![Profile](assets/image/screenshot/profile.png) |
 
 |                Splash                 |                    Register                    |                        Login                        |                        Login                        |
 |:-------------------------------------:|:----------------------------------------------:|:---------------------------------------------------:|:---------------------------------------------------:|
